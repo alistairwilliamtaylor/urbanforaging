@@ -1,0 +1,74 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: whitesmoke;
+}
+
+h1, h2, h3, a, p {
+    font-family: 'Jost', sans-serif;
+}
+
+header {
+    height: 20%;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+}
+
+header nav {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+header h1 {
+    text-align: center;
+}
+
+h1 a {
+    color: black;
+    text-decoration: none;
+}
+
+header a {
+    font-size: 1.75em;
+    margin: auto;
+}
+
+.index_container {
+    width: 70%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 5%;
+    padding-top: 5%;
+}
+
+.index_container > div {
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.food_card {
+    display: grid;
+    width: 300px;
+    grid-template-rows: 1fr 1fr;
+}
+
+.food_card img {
+    display: block;
+    width: 100%;
+}
+
+.food_card h3 {
+    text-align: center;
+}
+
+.food_card p {
+    text-align: justify;
+    padding: 10%;
+}

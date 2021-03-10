@@ -2,18 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hello World</title>
+  <title>Urban Foraging</title>
   <link rel='stylesheet' href='/stylesheets/main.css'>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<h1>Urban Foraging</h1>
-<%# <a href="/">home</a> <br> %>
-<%# <form action="" method="">
-<a href="/foods">add</a>
-</form> %>
+<header>
+  <div class="logo">
+    <h1><a href="/">URBAN FORAGING</a></h1>
+  </div>
+  <nav>
+    <a href="/login">login</a>
+    <a href="/about">about</a>
+    <a href="/foods/new">add</a>
+  </nav>
+</header>
 
-  <%= yield %>
+<main>
+    <%= yield %>
+</main>
 
 </body>
 </html>
