@@ -10,6 +10,19 @@ require_relative 'db/lib'
 
 enable(:sessions)
 
+def logged_in?()
+  if session[:user_id]
+    return true
+  else
+    return false
+  end
+end
+
+def current_user
+  results = run_sql("SELECT * FROM users WHERE id = $1;", [session[:user_id]])
+  return results.first
+end
+
 
 get '/' do
 
@@ -44,7 +57,30 @@ get '/login' do
   erb :login
 end
 
+post '/sessions' do
 
+  results = run_sql("SELECT * FROM users WHERE email = $1;", [params[:email]])
 
+  if results.count == 1 && my_password = BCrypt::Password.new(results.first['password_digest']).==(params[:password])
 
+    session[:user_id] = results.first['id']
 
+    redirect '/sessions'
+  else
+    erb :login
+  end
+end
+
+get '/sessions' do
+
+  user_foods = run_sql("SELECT * FROM food WHERE user_id = $1", [current_user['id']])
+  
+  erb :sessions, locals: {
+    user_foods: user_foods
+  }
+end
+
+delete '/sessions' do
+  session[:user_id] = nil
+  redirect '/'
+end
