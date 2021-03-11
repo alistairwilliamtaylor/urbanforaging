@@ -1,6 +1,6 @@
 <% if current_user['id'] == food['user_id'] %>
     
-    <form action="/foods/edit_form">
+    <form action="/foods/edit">
         <input type="hidden" name="food_id" value="<%=food['id']%>">
         <button>edit</button>
     </form>

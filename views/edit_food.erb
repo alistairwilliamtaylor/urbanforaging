@@ -1,0 +1,16 @@
+<img src="<%= food['image_url']%>" alt="image of <%=food['food_type']%>">
+
+<form action="/foods" method="post">
+    <input type="hidden" name="food_id" value=<%=food['id']%>>
+    <input type="hidden" name="_method" value="patch">
+    
+    
+    <label for="food_type">food type</label>
+    <input type="text" name="food_type" value=<%=food['food_type']%>>
+    
+    <label for="location_description">location</label>
+    <input type="text" name="location_description" value=<%=food['location_description']%>>
+
+    <button>edit</button>
+
+</form>
