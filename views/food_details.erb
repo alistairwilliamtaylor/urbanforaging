@@ -1,0 +1,22 @@
+<% if current_user['id'] == food['user_id'] %>
+    
+    <form action="/foods/edit_form">
+        <input type="hidden" name="food_id" value="<%=food['id']%>">
+        <button>edit</button>
+    </form>
+
+    <form action="/foods" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="food_id" value="<%=food['id']%>">
+        <button>delete</button>
+    </form>
+
+<% end  %>
+
+<div class="food_details">
+    <img src="<%= food['image_url'] %>" alt="picture of <%= food['food_type'] %>">
+    <div>
+        <h3><%= food['food_type'] %></h3>
+        <p> <%= food['location_description'] %> </p>
+    </div>
+</div>

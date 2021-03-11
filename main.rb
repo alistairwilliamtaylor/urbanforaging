@@ -1,12 +1,32 @@
 require 'sinatra'
 require 'bcrypt'
+require 'pry'
+require 'active_support'
+require 'action_view'
+require 'cloudinary'
+require_relative 'db/lib'
+
+include CloudinaryHelper
+
 
 if development?
   require 'sinatra/reloader'
   require 'pry'
 end
 
-require_relative 'db/lib'
+
+
+auth = {
+  cloud_name: 'dmavnywma',
+  api_key: ENV['cloudinary_api_key'],
+  api_secret: ENV['cloudinary_secret_api_key']
+}
+
+sydney_regions = ['St George', 'Inner West', 'City Center', 'South Western Sydney', 'Greater Western Sydney', 'Hills District', 'Sutherland Shire', 'Eastern Suburbs', 'Northern Beaches', 'North Shore'].sort
+
+culinary_categories = ['fruit', 'herb', 'vegetable', 'funghi'].sort
+
+
 
 enable(:sessions)
 
@@ -31,6 +51,7 @@ get '/' do
   erb :index, locals: {
     foods: foods
   }
+
 end
 
 get '/about' do
@@ -38,19 +59,37 @@ get '/about' do
 end
 
 get '/foods/new' do
-  erb :new_food
+  if logged_in?
+    erb :new_food
+  else redirect '/login'
+  end
 end
 
 post '/foods' do
 
-  run_sql("INSERT INTO food(food_type, image_url, location_description) VALUES($1, $2, $3);", 
-  [
-    params[:food_type],
-    params[:image_url],
-    params[:location_description]
-  ])
+  if logged_in?
+    result = Cloudinary::Uploader.upload(params[:image][:tempfile], auth)
 
-  redirect '/'
+    run_sql("INSERT INTO food(food_type, image_url, location_description, user_id) VALUES($1, $2, $3, $4);", 
+    [
+      params[:food_type],
+      result['url'],
+      params[:location_description],
+      current_user['id']
+    ])
+
+    redirect '/sessions'
+  else
+    redirect '/login'
+  end
+end
+
+get '/foods' do
+  food = run_sql("SELECT * FROM food WHERE id = #{params[:id]}")[0]
+
+  erb :food_details, locals: {
+    food: food
+  } 
 end
 
 get '/login' do
@@ -83,4 +122,22 @@ end
 delete '/sessions' do
   session[:user_id] = nil
   redirect '/'
+end
+
+get '/sessions/new' do
+  erb :new_user
+end
+
+post '/sessions/new' do
+  existing_user = run_sql("SELECT * FROM users WHERE email = $1", [params[:email]])
+
+  if existing_user.count == 0
+    password_digest = BCrypt::Password.create(params[:password])
+    run_sql("INSERT INTO users (email, password_digest) VALUES ($1, $2);", [params[:email], password_digest])
+    results = run_sql("SELECT * FROM users WHERE email = $1;", [params[:email]])
+    session[:user_id] = results.first['id']
+    redirect '/sessions'
+  else
+    redirect '/sessions/new'
+  end
 end
