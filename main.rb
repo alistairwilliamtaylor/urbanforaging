@@ -92,6 +92,19 @@ get '/foods' do
   } 
 end
 
+delete '/foods' do
+  food_creator_hash = run_sql("SELECT user_id FROM food WHERE id = $1;", [params[:food_id]])
+
+  food_creator_id = food_creator_hash.first['user_id']
+
+  if food_creator_id == current_user['id']
+    run_sql("DELETE FROM food WHERE id = $1", [params[:food_id]])
+    redirect '/sessions'
+  else
+    redirect '/'
+  end
+end
+
 get '/login' do
   erb :login
 end
