@@ -102,7 +102,7 @@ header a {
     padding: 5%;
 }
 
-.food_details, .new_food_form, .edit_food_form {
+.generic_form, .food_details, .new_food_form, .edit_food_form {
     width: 50%;
     margin: 0 auto;
     background-color: white;
@@ -111,23 +111,23 @@ header a {
     text-align: center;
 }
 
-.new_food_form input, .edit_food_form input{
+.generic_form input, .new_food_form input, .edit_food_form input{
     padding: 1em;
     margin: 0 auto;
     display: block;
 }
 
-.new_food_form label, .edit_food_form label {
+.generic_form label, .new_food_form label, .edit_food_form label {
     display: block;
     margin: 10% auto 0 auto;
 }
 
-.new_food_form button, .edit_food_form button {
+.generic_form button, .new_food_form button, .edit_food_form button {
     margin-top: 10%;
     margin-bottom: 10%;
 }
 
-.food_details img, .edit_food_form img{
+.generic_form img, .food_details img, .edit_food_form img{
     display: block;
     width: 100%;
     border-radius: 7px 7px 0 0;
