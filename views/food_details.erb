@@ -1,15 +1,17 @@
 <% if current_user['id'] == food['user_id'] %>
     
-    <form action="/foods/edit">
-        <input type="hidden" name="food_id" value="<%=food['id']%>">
-        <button>edit</button>
-    </form>
+    <section class="details_buttons">
+        <form action="/foods/edit">
+            <input type="hidden" name="food_id" value="<%=food['id']%>">
+            <button id="details_button">edit</button>
+        </form>
 
-    <form action="/foods" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="food_id" value="<%=food['id']%>">
-        <button>delete</button>
-    </form>
+        <form action="/foods" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="food_id" value="<%=food['id']%>">
+            <button id="details_button">delete</button>
+        </form>
+    </section>
 
 <% end  %>
 

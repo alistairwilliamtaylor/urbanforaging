@@ -7,8 +7,16 @@ body {
     background-color: whitesmoke;
 }
 
-h1, h2, h3, a, p {
+h1, h2, h3, a, p, label {
     font-family: 'Jost', sans-serif;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: darkolivegreen;
 }
 
 header {
@@ -94,13 +102,64 @@ header a {
     padding: 5%;
 }
 
-.food_details {
+.food_details, .new_food_form, .edit_food_form {
     width: 50%;
     margin: 0 auto;
     background-color: white;
+    border: 2px solid black;
+    border-radius: 7px;
+    text-align: center;
 }
 
-.food_details img{
+.new_food_form input, .edit_food_form input{
+    padding: 1em;
+    margin: 0 auto;
+    display: block;
+}
+
+.new_food_form label, .edit_food_form label {
+    display: block;
+    margin: 10% auto 0 auto;
+}
+
+.new_food_form button, .edit_food_form button {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.food_details img, .edit_food_form img{
     display: block;
     width: 100%;
+    border-radius: 7px 7px 0 0;
+}
+
+.not_logged_in {
+    height: 4em;
+}
+
+.add_post {
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 50%;
+    margin: 5% auto 0 auto;
+    width: 20%;
+    height: 20%
+}
+
+.add_post:hover {
+    border: 2px solid darkolivegreen;
+}
+
+.add_post a {
+    display: block;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
+}
+
+.details_buttons {
+    width: 50%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }

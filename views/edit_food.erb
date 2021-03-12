@@ -1,3 +1,5 @@
+<section class = "edit_food_form">
+
 <img src="<%= food['image_url']%>" alt="image of <%=food['food_type']%>">
 
 <form action="/foods" method="post">
@@ -11,6 +13,8 @@
     <label for="location_description">location</label>
     <input type="text" name="location_description" value=<%=food['location_description']%>>
 
-    <button>edit</button>
+    <button>submit</button>
 
 </form>
+
+</section>

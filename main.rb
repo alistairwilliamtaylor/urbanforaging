@@ -180,3 +180,7 @@ post '/sessions/new' do
     redirect '/sessions/new'
   end
 end
+
+get '/search' do
+  erb :search
+end

@@ -1,15 +1,10 @@
-<p class="current_user_message">You are signed in as <%= current_user['email']%> </p>
-
-<form action="/sessions" class="current_user_message" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button>log out</button>
-</form>
-
 <div class="banner">
     <h2>Your Posts</h2>
 </div>
 
-<a href="/foods/new">add a post</a>
+<div class="add_post">
+    <h2><a href="/foods/new">ADD A POST</a></h2>
+</div>
 
 <div class="index_container">
 

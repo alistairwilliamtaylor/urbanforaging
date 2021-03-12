@@ -25,6 +25,16 @@
 </header>
 
 <main>
+    <%if logged_in?%>
+      <p class="current_user_message">You are signed in as <%= current_user['email']%> </p>
+
+      <form action="/sessions" class="current_user_message" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button>log out</button>
+      </form>
+      <% else %>
+        <div class="not_logged_in"></div>
+    <% end %>
     <%= yield %>
 </main>
 
