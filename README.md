@@ -1,6 +1,6 @@
 # Urban Foraging
 
-![Home Screen](/images/Homepage)
+![Home Screen](/images/Homepage.png)
 
 ## Introduction
 This project (https://floating-hollows-42882.herokuapp.com/) is the first step towards creating a functioning app for users to share their knowledge about publically accessible fruit trees, herbs, and vegetables in the Greater Sydney Area.
