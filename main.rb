@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'bcrypt'
-require 'pry'
 require 'active_support'
 require 'action_view'
 require 'cloudinary'
